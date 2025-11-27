@@ -3,7 +3,7 @@ body {
     margin: 0;
     font-family: 'Playfair Display', serif;
     background: #f4fff5;
-    color: #2e4d34;
+    color: black;
 }
 
 /* Hero Section */
@@ -52,21 +52,27 @@ body {
     width: 200px;
     max-width: 80vw;
     border-radius: 50%;
-    /* Optional subtle shadow for readability */
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.hero-content h1 {
+    font-size: 2.2rem;
+    color: #2e4d34;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
 
 .hero-content p {
     font-size: 1.3rem;
     max-width: 600px;
     line-height: 1.5;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.3); /* makes text readable on video */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
 
+/* CTA Buttons */
 .cta-btn {
     text-decoration: none;
-    background: #4e8c5a;
-    color: white;
+    background: black;
+    color: #34ebc6;
     padding: 12px 30px;
     border-radius: 8px;
     font-size: 1rem;
@@ -74,26 +80,46 @@ body {
 }
 
 .cta-btn:hover {
+    transform: scale(1.05);
     background: #3b6b45;
 }
 
-/* Floating Icons */
-.insta-float, .whatsapp-float {
+/* Map Button */
+.map-btn {
     position: absolute;
+    top: 20px;
+    right: 20px;
+    background: black;
+    color: #34ebc6;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.map-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+}
+
+/* Floating Icons */
+.float-wrapper {
+    position: fixed;
+    left: 20px;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     z-index: 10;
+}
+
+.insta-float, .whatsapp-float {
     width: 100px;
     height: 100px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.insta-float {
-    left: 20px;
-}
-
-.whatsapp-float {
-    right: 20px;
 }
 
 .insta-float img, .whatsapp-float img {
@@ -103,9 +129,44 @@ body {
 }
 
 .insta-float:hover, .whatsapp-float:hover {
-    transform: translateY(-50%) scale(1.15);
+    transform: scale(1.15);
     opacity: 0.9;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
+/* Scroll Arrow */
+.arrow-down {
+    width: 20px;
+    height: 20px;
+    border: solid #34ebc6;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 5px;
+    transform: rotate(45deg); /* points arrow down */
+    margin: 20px auto 0; /* spacing from previous element */
+    animation: bounce 1.5s infinite;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: rotate(45deg) translateY(0); }
+    40% { transform: rotate(45deg) translateY(10px); }
+    60% { transform: rotate(45deg) translateY(5px); }
+}
+
+/* Optional: responsive size for smaller screens */
+@media (max-width: 480px) {
+    .arrow-down {
+        width: 15px;
+        height: 15px;
+        border-width: 0 2px 2px 0;
+        padding: 4px;
+    }
+}
+
+
+
+
 
 /* Product Slider */
 .product-slider {
@@ -217,53 +278,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .hero-content img.logo-blend {
-        width: 150px;
-        background: black;
-    }
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-    .slide-service {
-        flex: 0 0 48%;
-    }
-}
-
-/* Logo Wrapper to show background */
-.logo-wrapper {
-    width: 250px;           /* size of the circular background */
-    height: 250px;
-    background: black;      /* your desired background */
-    border-radius: 50%;     /* makes it circular */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo-wrapper img.logo-blend {
-    width: 80%;             /* scale down slightly so background is visible */
-    height: auto;
-    border-radius: 50%;
-    display: block;
-}
-
-@media (max-width: 480px) {
-    .hero-content img.logo-blend {
-        width: 120px;
-    }
-    .hero-content p {
-        font-size: 1rem;
-    }
-    .slide-service {
-        flex: 0 0 100%;
-    }
-    .insta-float, .whatsapp-float {
-        width: 50px;
-        height: 50px;
-    }
-}
 /* PDF Modal Container */
 #menu-container {
     display: none;
@@ -291,7 +305,6 @@ footer {
     position: relative;
 }
 
-/* Close Button */
 .menu-close {
     position: absolute;
     top: 15px;
@@ -310,15 +323,71 @@ footer {
     background: #3b6b45;
 }
 
-/* Embedded PDF */
 .menu-frame iframe {
     width: 100%;
     height: 100%;
     border: none;
 }
 
-/* Fade animation */
 @keyframes menuFade {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+/* Logo Wrapper */
+.logo-wrapper {
+    width: 250px;
+    height: 250px;
+    background: black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-wrapper img.logo-blend {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content img.logo-blend { width: 150px; }
+    .hero-content p { font-size: 1.1rem; }
+    .slide-service { flex: 0 0 48%; }
+}
+
+@media (max-width: 480px) {
+    .hero-content img.logo-blend { width: 120px; }
+    .hero-content p { font-size: 1rem; }
+    .slide-service { flex: 0 0 100%; }
+    .insta-float, .whatsapp-float { width: 50px; height: 50px; }
+}
+
+.instagram-feed {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.instagram-feed h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.instagram-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 500px; /* enough to show most content */
+    margin: 0 auto;
+    overflow-y: auto; /* scroll inside iframe */
+}
+
+.instagram-wrapper iframe {
+    width: 100%;
+    height: 500px; /* original embed height */
+    border: none;
+}
+
+
